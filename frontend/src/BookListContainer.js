@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react";
+import { Select } from "antd";
+const { Option } = Select;
 
 export default class BookListContainer extends PureComponent {
   state = { books: [] };
@@ -6,7 +8,6 @@ export default class BookListContainer extends PureComponent {
   componentDidMount() {
     fetch("api/books").then(response => {
       response.json().then(books => {
-        console.log();
         this.setState({ books: books });
       });
     });
@@ -14,11 +15,11 @@ export default class BookListContainer extends PureComponent {
 
   render() {
     return (
-      <select>
+      <Select style={{ width: "200px" }}>
         {this.state.books.map(b => (
-          <option key={b}>{b}</option>
+          <Option key={b}>{b}</Option>
         ))}
-      </select>
+      </Select>
     );
   }
 }
